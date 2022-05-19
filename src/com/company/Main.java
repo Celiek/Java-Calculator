@@ -18,16 +18,13 @@ public class Main {
         Pattern znak = Pattern.compile("([\\+\\-\\/\\*])");
         Matcher znak_dzialania = znak.matcher(dzialanie);
 
-
         //pierwsza liczba
         Pattern pierwsza_liczba = Pattern.compile("^(\\d+[\\+\\-\\*\\/]{1})");
         Matcher pierwsza  = pierwsza_liczba.matcher(dzialanie);
 
-
         //druga liczba
         Pattern druga_liczba = Pattern.compile("[0-9]+$");
         Matcher druga = druga_liczba.matcher(dzialanie);
-
 
         //debug stuff
         System.out.println("Znak specjalny " + znak_dzialania.find());
@@ -37,7 +34,7 @@ public class Main {
         Pattern test = Pattern.compile("([\\+\\-\\/\\*])|(^(\\d+[\\+\\-\\*\\/]{1}))|([0-9]+$)");
         Matcher matchtest = test.matcher("123+321");
 
-        String[] znak_specjalny = dzialanie.split("[\\+\\-\\/\\*]" , 1);
+        String[] znak_specjalny = dzialanie.split("[\\+\\-\\/\\*]" , 3);
         System.out.println("Znak specjalny" );
 
         for (int i = 0; i < znak_specjalny.length; i++) {
