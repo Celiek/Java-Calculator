@@ -1,6 +1,5 @@
 package com.company;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -15,69 +14,66 @@ public class Main {
         String dzialanie = scan.nextLine();
 
         //znak specjanly
-        Pattern znak = Pattern.compile("([\\+\\-\\/\\*])");
-        Matcher znak_dzialania = znak.matcher(dzialanie);
+        //Pattern znak = Pattern.compile("([\\+\\-\\/\\*])");
+        //Matcher znak_dzialania = znak.matcher(dzialanie);
 
         //pierwsza liczba
-        Pattern pierwsza_liczba = Pattern.compile("^(\\d+[\\+\\-\\*\\/]{1})");
-        Matcher pierwsza  = pierwsza_liczba.matcher(dzialanie);
+        //Pattern pierwsza_liczba = Pattern.compile("^(\\d+[\\+\\-\\*\\/]{1})");
+        //Matcher pierwsza  = pierwsza_liczba.matcher(dzialanie);
 
         //druga liczba
-        Pattern druga_liczba = Pattern.compile("[0-9]+$");
-        Matcher druga = druga_liczba.matcher(dzialanie);
+        //Pattern druga_liczba = Pattern.compile("[0-9]+$");
+        //Matcher druga = druga_liczba.matcher(dzialanie);
 
         //debug stuff
-        System.out.println("Znak specjalny " + znak_dzialania.find());
-        System.out.println("Pierwsza liczba " + pierwsza.find());
-        System.out.println("Druga liczba " + druga.find());
+        String[] zn1 = dzialanie.split("([\\+\\-\\/\\*])");
 
-        Pattern test = Pattern.compile("([\\+\\-\\/\\*])|(^(\\d+[\\+\\-\\*\\/]{1}))|([0-9]+$)");
-        Matcher matchtest = test.matcher("123+321");
-
-        String[] znak_specjalny = dzialanie.split("[\\+\\-\\/\\*]" , 3);
-        System.out.println("Znak specjalny" );
-
-        for (int i = 0; i < znak_specjalny.length; i++) {
-                System.out.println(znak_specjalny[i]);
+        try{
+            int znak1 = Integer.parseInt(String.valueOf(dzialanie.split("(\\d+[\\+\\-\\*\\/]{1})")));
+            System.out.println("pierwsza liczba" + znak1);
+        }catch(NumberFormatException ex){
+            ex.printStackTrace();
         }
 
-        List<String> tokens = new LinkedList<String>();
-
-        while(matchtest.find()){
-            String token = matchtest.group(1);
-            tokens.add(token);
+        try{
+            int znak2 = Integer.parseInt(String.valueOf(dzialanie.split("[0-9]+$")));
+            System.out.println("Druga liczba " + znak2);
+        }catch(NumberFormatException ex){
+            ex.printStackTrace();
         }
 
-        System.out.println(tokens);
+//        System.out.println("znak dzialania " + zn1[0]);
+//        System.out.println("pierwsza liczba " + znak1);
+//        System.out.println("druga liczba " + znak2);
+
 
 
 
         //jezeli nie wprowadzono prawidlowego znaku
         //ta czesc kodu przerywa wykonanie
-        if(!znak_dzialania.find()){
-            System.out.println("Nie znaleziono znaku dzialania");
-            return;
-        }
+//        if(!znak_dzialania.find()){
+//            System.out.println("Nie znaleziono znaku dzialania");
+//            return;
+//        }
+        String temp = zn1[0];
 
-        String temp = znak.toString();
-
-        switch (temp){
-            case "+":
-                    System.out.println( Integer.parseInt(String.valueOf(pierwsza_liczba))  + Integer.parseInt(String.valueOf(druga_liczba)));
-                break;
-            case "-":
-                System.out.println( Integer.parseInt(String.valueOf(pierwsza_liczba))  - Integer.parseInt(String.valueOf(druga_liczba)));
-                break;
-            case "*":
-                System.out.println( Integer.parseInt(String.valueOf(pierwsza_liczba))  * Integer.parseInt(String.valueOf(druga_liczba)));
-                break;
-            case "/":
-                System.out.println( Integer.parseInt(String.valueOf(pierwsza_liczba))  / Integer.parseInt(String.valueOf(druga_liczba)));
-                break;
-            default:
-                System.out.println("Cos poszlo nie tak");
-                break;
-        }
+//        switch (temp){
+//            case "+":
+//                    System.out.println( znak1 + znak2);
+//                break;
+//            case "-":
+//                System.out.println( znak1 - znak2);
+//                break;
+//            case "*":
+//                System.out.println( znak1 * znak2);
+//                break;
+//            case "/":
+//                System.out.println( znak1 / znak2);
+//                break;
+//            default:
+//                System.out.println("Cos poszlo nie tak");
+//                break;
+//        }
 
         scan.close();
     }
